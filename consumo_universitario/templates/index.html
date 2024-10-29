@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <title>Eco Huella</title>
+  <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+</head>
+
+<body>
+  <header>
+    <nav class="navbar border-bottom border-body">
+      <div class="container-fluid">
+
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'images/logo2.png' %}" alt="logo" height="50" width="50">
+        </a>
+
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'calcular' %}">Calcular Huella</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Acerca De</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+
+  {% block content %}
+
+  {% endblock %}
+</body>
+
+</html>

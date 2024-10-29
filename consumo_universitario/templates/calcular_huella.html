@@ -1,0 +1,249 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <div id="start-screen">
+        <h1>Bienvenido al Formulario</h1>
+        <p>Presiona el botón para iniciar el formulario.</p>
+        <button type="button" onclick="startForm()">Iniciar</button>
+    </div>
+
+    <form id="formulario">
+        <!-- Las preguntas van aquí en forma de pasos -->
+        <div class="step">
+            <h3>Uso dispositivos electronicos</h3>
+            <label for="p1">¿Cuántas horas al día usas dispositivos electrónicos (laptop, celular, tablet) para estudiar o trabajar?:</label>
+            <input type="range" id="p1" name="p1" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p1Output">0</output> horas
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+        
+        <div class="step">
+            
+        <!-- ninguna,poca,regularmente,mucha,siempre -->
+            <h3>Energia en la universidad</h3>
+            <label for="p2">¿Con qué frecuencia utilizas los enchufes para cargar tus dispositivos electrónicos dentro del campus de la universidad?:</label>
+        <!-- o definir una frecuencia real -->
+            <input type="range" id="p2" name="p2" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p2Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div class="step">
+            <!-- ninguna,poca,regularmente,mucha,siempre -->
+            <h3>Desperdicio de energia</h3>
+            <label for="p3">¿Con qué frecuencia dejas tus dispositivos conectados después de que se han cargado por completo?:</label>
+            <input type="range" id="p3" name="p3" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p3Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div class="step">
+            <!-- nunca,aveces,regularmente,lo hago,siempre -->
+            <h3>Energia en las aulas</h3>
+            <label for="p4">¿Al finalizar las clases desconectan los dispositivos y apagan las luces del aula?:</label>
+            <input type="range" id="p4" name="p4" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p4Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div class="step">
+             <!--definir una frecuencia real -->
+            <h3>Uso de baños</h3>
+            <label for="p5">¿Con qué frecuencia utiliza los baños de la universidad durante la semana?:</label>
+            <input type="range" id="p5" name="p5" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p5Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div class="step">
+            <!-- ninguna,poca,regularmente,mucha,siempre -->
+            <h3>Cerrar la llave</h3>
+            <label for="p6">¿Cierra la llave mientras se cepilla los dientes o se lava las manos?:</label>
+            <input type="range" id="p6" name="p6" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p6Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div class="step">
+            <!--definir una frecuencia real -->
+            <h3>Hidratacion</h3>
+            <label for="p7">¿Con que frecuencia utilizas las fuentes o bebederos de agua de la universidad?:</label>
+            <input type="range" id="p7" name="p7" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p7Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div class="step">
+            <!--ninguno,liquidos,solidos,ambos-->
+            <h3>Desperdicios</h3>
+            <label for="p8">¿Qué tipo de residuos arrojas al sanitario de la universidad?:</label>
+            <input type="range" id="p8" name="p8" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p8Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div class="step">
+            <!--No, Si -->
+            <h3>Manejo de residuos</h3>
+            <label for="p9">¿Antes de desechar tu basura conoces en que recipiente debe de ir?:</label>
+            <input type="range" id="p9" name="p9" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p9Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div class="step">
+            <h3>Reutilizacion de recipientes</h3>
+            <label for="p10">¿Sueles reutilizar las botellas plásticas o prefieres comprar una nueva cada vez que necesitas agua?:</label>
+            <input type="range" id="p10" name="p10" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p10Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div class="step">
+            <h3>Compartir transporte</h3>
+            <label for="p11">¿Sueles compartir tus medios de transporte con otros compañeros para reducir la huella de carbono?:</label>
+            <input type="range" id="p11" name="p11" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p11Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div class="step">
+            <h3>Medio de transporte</h3>
+            <label for="p12">¿Sueles caminar o usar bicicleta para llegar a la universidad? ¿Con qué frecuencia?:</label>
+            <input type="range" id="p12" name="p12" min="0" max="24" value="0" oninput="updateValue(this)">
+            <output id="p12Output">0</output> veces
+            <button type="button" onclick="nextStep()">Siguiente</button>
+        </div>
+        
+    </form>
+
+    <div id="resultados" style="display: none;">
+        <h3>Respuestas del formulario</h3>
+        <ul id="listaResultados"></ul>
+    </div>
+
+    <style>
+        /* Ocultar todos los pasos por defecto */
+        .step, #formulario {
+            display: none;
+        }
+        /* Mostrar el paso activo */
+        .active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #start-screen {
+            text-align: center;
+            padding: 50px;
+        }
+        input[type="range"] {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        #formulario {
+            width: 90%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        @media (max-width: 600px) {
+            input[type="text"] {
+                width: 100%;
+            }
+            #formulario {
+                width: 100%;
+                margin: 20px;
+            }
+        }
+    </style>
+
+    <script>
+        let currentStep = 0;
+        let steps = Array.from(document.querySelectorAll(".step"));
+        const respuestas = {};
+    
+        function startForm() {
+            document.getElementById("start-screen").style.display = "none";
+            document.getElementById("formulario").style.display = "block";
+            shuffleSteps(); // Mezcla los pasos antes de mostrarlos
+            showStep(currentStep);
+        }
+    
+        function showStep(step) {
+            steps.forEach((element, index) => {
+                element.classList.toggle("active", index === step);
+            });
+        }
+    
+        function nextStep() {
+            // Guarda la respuesta actual en el objeto 'respuestas'
+            const input = steps[currentStep].querySelector("input[type='range']");
+            respuestas[input.id] = input.value;
+            
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            } else {
+                mostrarResultados();
+            }
+        }
+    
+        function updateValue(input) {
+            const outputId = input.id + "Output";
+            document.getElementById(outputId).value = input.value;
+        }
+    
+        function shuffleSteps() {
+            const form = document.getElementById("formulario");
+            steps = steps.sort(() => Math.random() - 0.5); // Mezclar el array
+            steps.forEach(step => form.appendChild(step));
+        }
+    
+        function mostrarResultados() {
+            document.getElementById("formulario").style.display = "none";
+            document.getElementById("resultados").style.display = "block";
+            const listaResultados = document.getElementById("listaResultados");
+            listaResultados.innerHTML = ''; // Limpiar resultados previos
+    
+            for (let i = 1; i <= 12; i++) {
+                const pregunta = `p${i}`;
+                const valor = respuestas[pregunta] || "No respondido";
+                const li = document.createElement("li");
+                li.textContent = `Pregunta ${i}: ${valor}`;
+                listaResultados.appendChild(li);
+            }
+        }
+    
+        showStep(currentStep);  // Muestra el primer paso
+    </script>
+
+{% endblock %}

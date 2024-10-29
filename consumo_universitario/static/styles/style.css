@@ -1,0 +1,13 @@
+nav {
+    background-color: #222222;
+}
+
+.cover {
+    height: 600px;
+    background-image: url('../images/fondo.webp' );
+    color: white;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
+}
+

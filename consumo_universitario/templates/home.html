@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="cover d-flex justify-content-center align-items-center flex-column">
+
+    <h1 style="padding:40px; font-weight: bold;">
+        Eco Huella
+    </h1>
+    <p class="text-center">
+        La huella ecológica es un indicador crucial que mide el impacto que nuestras actividades tienen sobre el medio
+        ambiente, expresando la cantidad de recursos naturales que consumimos y la capacidad de la Tierra para regenerar
+        esos recursos. En el contexto universitario, mediremos los siguientes puntos:
+    </p>
+    <button type="button" class="btn btn-light">
+        Conoce mas
+    </button>
+</div>
+<section>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{% static 'images/conciencia.png' %}" class="card-img-top" alt="conciencia ambiental"
+                        height="200" width="200">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-weight: bold;">Conciencia ambiental:</h5>
+                        <p>Evalúa el nivel de conciencia ambiental dentro de la comunidad universitaria.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{% static 'images/energetico.png' %}" class="card-img-top" alt="consumo energetico"
+                        height="200" width="200">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-weight: bold;">Consumo energetico:</h5>
+                        <p>Monitorea el consumo de energía y su impacto en el medio ambiente.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img src="{% static 'images/agua.png' %}" class="card-img-top" alt="consumo de agua" height="200"
+                        width="200">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-weight: bold;">Consumo de Agua: </h5>
+                        <p>Analiza el uso del agua en el entorno universitario y posibles mejoras.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
