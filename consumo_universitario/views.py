@@ -9,18 +9,18 @@ preguntas = {
     },
     "p2": {
         "titulo": "Energía en la universidad",
-        "pregunta": "¿Con qué frecuencia utilizas los enchufes para cargar tus dispositivos electrónicos dentro del campus de la universidad?",
-        "unidad": ["nunca","ocasionalmente","frecuentemente","siempre"]
+        "pregunta": "¿Con qué frecuencia utilizas los tomas electricos para cargar tus dispositivos electrónicos dentro del campus de la universidad?",
+        "unidad": ["Nunca","Ocasionalmente","Frecuentemente","Siempre"]
     },
     "p3": {
         "titulo": "Desperdicio Energetico",
         "pregunta": "¿Con qué frecuencia dejas tus dispositivos conectados después de que se han cargado por completo?",
-        "unidad": ["nunca","ocasionalmente","frecuentemente","siempre"]
+        "unidad": ["Nunca","Ocasionalmente","Frecuentemente","Siempre"]
     },
     "p4": {
         "titulo": "Energia en las aulas",
         "pregunta": "¿Al finalizar las clases desconectan los dispositivos y apagan las luces del aula?",
-        "unidad": ["nunca","ocasionalmente","frecuentemente","siempre"]
+        "unidad": ["Nunca","Ocasionalmente","Frecuentemente","Siempre"]
     },
     "p5": {
         "titulo": "Uso de baños",
@@ -30,7 +30,7 @@ preguntas = {
     "p6": {
         "titulo": "Cerrar la llave",
         "pregunta": "¿Cierra la llave mientras se cepilla los dientes o se lava las manos?",
-        "unidad": ["nunca","ocasionalmente","frecuentemente","siempre"]
+        "unidad": ["Nunca","Ocasionalmente","Frecuentemente","Siempre"]
     },
     "p7": {
         "titulo": "Hidratacion",
@@ -40,7 +40,7 @@ preguntas = {
     "p8": {
         "titulo": "Desperdicios",
         "pregunta": "¿Qué tipo de residuos arrojas al sanitario de la universidad?",
-        "unidad": ["ninguno","loquidos","solidos","ambos"]
+        "unidad": ["Ninguno","Liquidos","Solidos","Ambos"]
     },
     "p9": {
         "titulo": "Manejo de residuos",
@@ -50,7 +50,7 @@ preguntas = {
     "p10": {
         "titulo": "Reutilizacion de recipientes",
         "pregunta": "¿Sueles reutilizar las botellas plásticas o prefieres comprar una nueva cada vez que necesitas agua?",
-        "unidad": ["nunca","ocasionalmente","frecuentemente","siempre"]
+        "unidad": ["Nunca","Ocasionalmente","Frecuentemente","Siempre"]
     },
     "p11": {
         "titulo": "Compartir transporte",
@@ -60,7 +60,7 @@ preguntas = {
     "p12": {
         "titulo": "Medio de transporte",
         "pregunta": "¿Sueles caminar o usar bicicleta para llegar a la universidad? ¿Con qué frecuencia?",
-        "unidad": ["Nunca","Ocasionalmente","Frecuentemente","siempre"]
+        "unidad": ["Nunca","Ocasionalmente","Frecuentemente","Siempre"]
     }
 }
 
