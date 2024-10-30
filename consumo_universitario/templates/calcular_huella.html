@@ -2,35 +2,33 @@
 
 {% block content %}
 
-<div id="start-screen">
-    <h1>Bienvenido al Formulario</h1>
-    <p>Presiona el botón para iniciar el formulario.</p>
-    <button type="button" onclick="startForm()">Iniciar</button>
-</div>
+<div class="container mt-5">
+    <div id="start-screen" class="text-center">
+        <h1>Bienvenido al Formulario</h1>
+        <p>Presiona el botón para iniciar el formulario.</p>
+        <button type="button" class="btn btn-primary" onclick="startForm()">Iniciar</button>
+    </div>
 
-<form id="formulario" style="display:none;">
-    {% for key, pregunta in preguntas.items %}
-        <div class="step">
-            <h3>{{ pregunta.titulo }}</h3>
-            <label for="{{ key }}">{{ pregunta.pregunta }}</label>
-            
-            <!-- Input de tipo rango para seleccionar la opción -->
-            <input type="range" id="{{ key }}" name="{{ key }}" 
-                   min="0" max="{{ pregunta.unidad|length|add:"-1" }}" value="0" 
-                   oninput="updateValue(this, {{ pregunta.unidad|safe }})">
-            <output id="{{ key }}Output">{{ pregunta.unidad.0 }}</output>
-            
-            <!-- Lista de opciones de 'unidad' -->
-    
-            
-            <button type="button" onclick="nextStep()">Siguiente</button>
-        </div>
-    {% endfor %}
-</form>
+    <form id="formulario" style="display:none;">
+        {% for key, pregunta in preguntas.items %}
+            <div class="step">
+                <h3>{{ pregunta.titulo }}</h3>
+                <label for="{{ key }}">{{ pregunta.pregunta }}</label>
+                
+                <input type="range" id="{{ key }}" name="{{ key }}" 
+                       min="0" max="{{ pregunta.unidad|length|add:"-1" }}" value="0" 
+                       class="form-control-range" oninput="updateValue(this, {{ pregunta.unidad|safe }})">
+                <output id="{{ key }}Output" class="form-control" style="width: auto;">{{ pregunta.unidad.0 }}</output>                
+                <button type="button" class="btn btn-secondary mt-3" onclick="nextStep()">Siguiente</button>
+            </div>
+        {% endfor %}
+    </form>
 
-<div id="resultados" style="display:none;">
-    <h2>Resultados</h2>
-    <ul id="listaResultados"></ul>
+    <div id="resultados" style="display:none;">
+        <h2>Resultados</h2>
+        <ul id="listaResultados" class="list-group"></ul>
+        <button type="button" class="btn btn-primary mt-3" onclick="restartForm()">Reiniciar Formulario</button>
+    </div>
 </div>
 
 <script>
@@ -121,7 +119,7 @@
             height: 100%;
             margin: 0;
         }
-        body {
+        .container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -145,7 +143,5 @@
             }
         }
     </style>
-
-    
 
 {% endblock %}

@@ -5,7 +5,7 @@ preguntas = {
     "p1": {
         "titulo": "Uso de dispositivos electrónicos",
         "pregunta": "¿Cuántas horas al día usas dispositivos electrónicos (laptop, celular, tablet) para estudiar o trabajar?",
-        "unidad": ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"]
+        "unidad": ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"]
     },
     "p2": {
         "titulo": "Energía en la universidad",
@@ -25,7 +25,7 @@ preguntas = {
     "p5": {
         "titulo": "Uso de baños",
         "pregunta": "¿Con qué frecuencia utiliza los baños de la universidad durante la semana?",
-        "unidad": ["nunca","1 a 5","6 a 10","11 a 15","16 a 20","21 a 25"]
+        "unidad": ["0","1 a 5","6 a 10","11 a 15","16 a 20","21 a 25"]
     },
     "p6": {
         "titulo": "Cerrar la llave",
@@ -35,7 +35,7 @@ preguntas = {
     "p7": {
         "titulo": "Hidratacion",
         "pregunta": "¿Con que frecuencia utilizas las fuentes o bebederos de agua de la universidad al Dia?",
-        "unidad": ["1","2","3","4","5","6","7","8","9","10"]
+        "unidad": ["0","1","2","3","4","5","6","7","8","9","10"]
     },
     "p8": {
         "titulo": "Desperdicios",
