@@ -18,8 +18,11 @@
                 <input type="range" id="{{ key }}" name="{{ key }}" 
                        min="0" max="{{ pregunta.unidad|length|add:"-1" }}" value="0" 
                        class="form-control-range" oninput="updateValue(this, {{ pregunta.unidad|safe }})">
-                <output id="{{ key }}Output" class="form-control" style="width: auto;">{{ pregunta.unidad.0 }}</output>                
-                <button type="button" class="btn btn-secondary mt-3" onclick="nextStep()">Siguiente</button>
+                <output id="{{ key }}Output" class="form-control" style="width: auto;">{{ pregunta.unidad.0 }}</output>
+                <div class="button-group mt-3">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep()">Anterior</button>
+                    <button type="button" class="btn btn-primary ms-2" onclick="nextStep()">Siguiente</button>
+                </div>
             </div>
         {% endfor %}
     </form>
@@ -57,6 +60,13 @@
             showStep(currentStep);
         } else {
             mostrarResultados();
+        }
+    }
+
+    function prevStep() {
+        if (currentStep > 0) {
+            currentStep--;
+            showStep(currentStep);
         }
     }
 
