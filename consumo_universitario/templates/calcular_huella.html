@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container mt-5 p-5">
     <div id="start-screen" class="text-center">
         <h1>Bienvenido al Formulario</h1>
         <p>Presiona el botón para iniciar el formulario.</p>
@@ -10,8 +10,11 @@
     </div>
 
     <form id="formulario" style="display:none;">
+        
         {% for key, pregunta in preguntas.items %}
+
             <div class="step">
+
                 <h3>{{ pregunta.titulo }}</h3>
                 <label for="{{ key }}">{{ pregunta.pregunta }}</label>
                 
@@ -19,10 +22,12 @@
                        min="0" max="{{ pregunta.unidad|length|add:"-1" }}" value="0" 
                        class="form-control-range" oninput="updateValue(this, {{ pregunta.unidad|safe }})">
                 <output id="{{ key }}Output" class="form-control" style="width: auto;">{{ pregunta.unidad.0 }}</output>
+                
                 <div class="button-group mt-3">
                     <button type="button" class="btn btn-secondary" onclick="prevStep()">Anterior</button>
                     <button type="button" class="btn btn-primary ms-2" onclick="nextStep()">Siguiente</button>
                 </div>
+
             </div>
         {% endfor %}
     </form>
@@ -39,6 +44,13 @@
     let steps = Array.from(document.querySelectorAll(".step"));
     const respuestas = {};
 
+    window.onload = function() {
+        steps.forEach((step) => {
+            const input = step.querySelector("input[type='range']");
+            respuestas[input.id] = 0;
+        });
+    };
+
     function startForm() {
         document.getElementById("start-screen").style.display = "none";
         document.getElementById("formulario").style.display = "block";
@@ -51,9 +63,58 @@
         });
     }
 
+    function calcularEnergia(respuestas) {
+        // P1: Uso de dispositivos electrónicos
+        const horasUso = Number(respuestas['p1']) * 66 || 0;
+        
+        // P2: Energía en la universidad
+        const factorEficiencia = [1, 1.1, 1.2, 1.3][Number(respuestas['p2'])] || 1;
+        
+        // P3: Desperdicio Energético
+        const consumoDispositivos = [0, 7.5, 15, 25][Number(respuestas['p3'])] || 0;
+        
+        // P4: Energía en las aulas
+        const ahorroEnergia = [50, 30, 15, 0][Number(respuestas['p4'])] || 0;
+        
+        return (horasUso + consumoDispositivos + ahorroEnergia) * factorEficiencia;
+    }
+
+    function calcularAgua(respuestas) {
+        // P5: Uso de baños
+        const consumoLitros = [0, 17.5, 40, 70, 95, 115][Number(respuestas['p5'])] || 0;
+        
+        // P6: Cerrar la llave
+        const ahorroAgua = [7.5, 4, 2, 0][Number(respuestas['p6'])] || 0;
+        
+        // P7: Hidratación
+        const usosBano = Number(respuestas['p7']) * 0.5 || 0;
+        
+        // P8: Desperdicios
+        const residuos = [0, 9, 18, 27][Number(respuestas['p8'])] || 0;
+        
+        return consumoLitros + ahorroAgua + usosBano + residuos;
+    }
+
+    function calcularConciencia(respuestas) {
+        // P9: Manejo de residuos
+        const concienciaBase = 1;
+        const factorP9 = Number(respuestas['p9']) === 0 ? 0 : 0.075;
+        
+        // P10: Reutilización de recipientes
+        const factorP10 = [0.05, 0.025, 0.01, 0][Number(respuestas['p10'])] || 0;
+        
+        // P11: Compartir transporte
+        const factorP11 = [0.05, 0.035, 0.02, 0.01, 0][Number(respuestas['p11'])] || 0;
+        
+        // P12: Medio de transporte
+        const factorP12 = [0.05, 0.025, 0.01, 0][Number(respuestas['p12'])] || 0;
+        
+        return concienciaBase + factorP9 + factorP10 + factorP11 + factorP12;
+    }
+
     function nextStep() {
         const input = steps[currentStep].querySelector("input[type='range']");
-        respuestas[input.id] = input.value;
+        respuestas[input.id] = Number(input.value) || 0;
 
         if (currentStep < steps.length - 1) {
             currentStep++;
@@ -72,8 +133,9 @@
 
     function updateValue(input, unidad) {
         const outputId = input.id + "Output";
-        const index = input.value;
+        const index = Number(input.value) || 0;
         document.getElementById(outputId).value = unidad[index];
+        respuestas[input.id] = index;
     }
 
     function mostrarResultados() {
@@ -82,12 +144,39 @@
         const listaResultados = document.getElementById("listaResultados");
         listaResultados.innerHTML = '';
 
-        for (let key in respuestas) {
-            const valor = respuestas[key];
-            const li = document.createElement("li");
-            li.textContent = `Pregunta ${key}: ${valor}`;
-            listaResultados.appendChild(li);
-        }
+        Object.keys(respuestas).forEach(key => {
+            respuestas[key] = Number(respuestas[key]) || 0;
+        });
+
+        const energia = calcularEnergia(respuestas) || 0;
+        const agua = calcularAgua(respuestas) || 0;
+        const conciencia = calcularConciencia(respuestas) || 1;
+        
+        const huellaTotal = conciencia * (agua + energia);
+
+        listaResultados.innerHTML = `
+            <li class="list-group-item">Consumo de Energía: ${energia.toFixed(2)} Wh</li>
+            <li class="list-group-item">Consumo de Agua: ${agua.toFixed(2)} L</li>
+            <li class="list-group-item">Factor de Conciencia: ${conciencia.toFixed(2)}</li>
+            <li class="list-group-item">Huella Total: ${huellaTotal.toFixed(2)}</li>
+        `;
+    }
+
+    function restartForm() {
+        currentStep = 0;
+        Object.keys(respuestas).forEach(key => {
+            respuestas[key] = 0;
+        });
+        
+        document.getElementById("resultados").style.display = "none";
+        document.getElementById("start-screen").style.display = "block";
+        
+        steps.forEach(step => {
+            const input = step.querySelector("input[type='range']");
+            input.value = 0;
+            const unidad = JSON.parse(input.getAttribute('oninput').match(/\((.*?)\)/)[1].split(',')[1]);
+            document.getElementById(input.id + "Output").value = unidad[0];
+        });
     }
 </script>
 
@@ -137,7 +226,6 @@
             align-items: center;
             background-color: #f0f0f0;
         }
-
 
         #formulario {
             width: 90%;

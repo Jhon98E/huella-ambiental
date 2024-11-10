@@ -5,11 +5,11 @@ preguntas = {
     "p1": {
         "titulo": "Uso de dispositivos electrónicos",
         "pregunta": "¿Cuántas horas al día usas dispositivos electrónicos (laptop, celular, tablet) para estudiar o trabajar?",
-        "unidad": ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"]
+        "unidad": ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"]#,"consumo_e": lambda respuesta: int(respuesta)*66 ]
     },
     "p2": {
         "titulo": "Energía en la universidad",
-        "pregunta": "¿Con qué frecuencia utilizas los tomas electricos para cargar tus dispositivos electrónicos dentro del campus de la universidad?",
+        "pregunta": "¿Con qué frecuencia utilizas las tomas eléctricas para cargar tus dispositivos electrónicos dentro del campus de la universidad?",
         "unidad": ["Nunca","Ocasionalmente","Frecuentemente","Siempre"]
     },
     "p3": {
