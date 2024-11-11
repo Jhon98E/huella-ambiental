@@ -1,4 +1,5 @@
 {% extends 'index.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -35,6 +36,7 @@
     <div id="resultados" style="display:none;">
         <h2>Resultados</h2>
         <ul id="listaResultados" class="list-group"></ul>
+        <div id="planetasContainer" class="d-flex flex-wrap justify-content-center mt-3"></div>
         <button type="button" class="btn btn-primary mt-3" onclick="restartForm()">Reiniciar Formulario</button>
     </div>
 </div>
@@ -143,7 +145,9 @@
         document.getElementById("formulario").style.display = "none";
         document.getElementById("resultados").style.display = "block";
         const listaResultados = document.getElementById("listaResultados");
+        const planetasContainer = document.getElementById("planetasContainer");
         listaResultados.innerHTML = '';
+        planetasContainer.innerHTML = '';
 
         Object.keys(respuestas).forEach(key => {
             respuestas[key] = Number(respuestas[key]) || 0;
@@ -166,16 +170,37 @@
         const consumoTotalUniversidad = (y*universidadAgua + universidadEnergia)/10;
         const huellaUniversidad = huellaTotalpuntaje/consumoTotalUniversidad;
 
-        // por si algo : 
-        //<li class="list-group-item">Huella Total: ${huellaTotal.toFixed(2)}</li>
-        //<li class="list-group-item">Huella Total x: ${huellaTotalpuntaje.toFixed(2)}</li>
-
         listaResultados.innerHTML = `
             <li class="list-group-item">Consumo de Energía: ${energia.toFixed(2)} Wh</li>
             <li class="list-group-item">Consumo de Agua: ${agua.toFixed(2)} L</li>
             <li class="list-group-item">Factor de Conciencia: ${conciencia.toFixed(2)}</li>
             <li class="list-group-item">Huella Total Universidad: ${huellaUniversidad.toFixed(2)}</li>
         `;
+
+        // Renderizar planetas basado en huellaUniversidad
+        const numeroEntero = Math.floor(huellaUniversidad);
+        const decimal = huellaUniversidad - numeroEntero;
+
+        // Agregar planetas completos
+        for(let i = 0; i < numeroEntero; i++) {
+            const planeta = document.createElement('img');
+            planeta.src = "{% static 'images/planeta.png' %}";
+            planeta.style.width = '100px';
+            planeta.style.height = '100px';
+            planeta.style.margin = '5px';
+            planetasContainer.appendChild(planeta);
+        }
+
+        // Agregar planeta parcial si hay decimal
+        if(decimal > 0) {
+            const planetaParcial = document.createElement('img');
+            planetaParcial.src = "{% static 'images/planeta.png' %}";
+            planetaParcial.style.width = '100px';
+            planetaParcial.style.height = '100px';
+            planetaParcial.style.margin = '5px';
+            planetaParcial.style.opacity = decimal;
+            planetasContainer.appendChild(planetaParcial);
+        }
     }
 
     function restartForm() {
