@@ -98,7 +98,7 @@
     function calcularConciencia(respuestas) {
         // P9: Manejo de residuos
         const concienciaBase = 1;
-        const factorP9 = Number(respuestas['p9']) === 0 ? 0 : 0.075;
+        const factorP9 = Number(respuestas['p9']) === 0 ? 0.075 : 0;
         
         // P10: Reutilización de recipientes
         const factorP10 = [0.05, 0.025, 0.01, 0][Number(respuestas['p10'])] || 0;
@@ -151,14 +151,17 @@
         const energia = calcularEnergia(respuestas) || 0;
         const agua = calcularAgua(respuestas) || 0;
         const conciencia = calcularConciencia(respuestas) || 1;
-        
-        const huellaTotal = conciencia * (agua + energia);
+        const x = 100 * (agua / energia);
+
+        const huellaTotal = conciencia * ((agua) + energia);
+        const huellaTotalx = conciencia * ((x*agua) + energia);
 
         listaResultados.innerHTML = `
             <li class="list-group-item">Consumo de Energía: ${energia.toFixed(2)} Wh</li>
             <li class="list-group-item">Consumo de Agua: ${agua.toFixed(2)} L</li>
             <li class="list-group-item">Factor de Conciencia: ${conciencia.toFixed(2)}</li>
             <li class="list-group-item">Huella Total: ${huellaTotal.toFixed(2)}</li>
+            <li class="list-group-item">Huella Total x: ${huellaTotalx.toFixed(2)}</li>
         `;
     }
 
