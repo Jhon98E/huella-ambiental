@@ -7,7 +7,7 @@
     <div id="start-screen" class="text-center">
         <h1>Bienvenido al Formulario</h1>
         <p>Presiona el botón para iniciar el formulario.</p>
-        <button type="button" class="btn btn-primary" onclick="startForm()">Iniciar</button>
+        <button type="button" class="btn btn-success" onclick="startForm()">Iniciar</button>
     </div>
 
     <form id="formulario" style="display:none;">
@@ -25,8 +25,8 @@
                 <output id="{{ key }}Output" class="form-control" style="width: auto;">{{ pregunta.unidad.0 }}</output>
                 
                 <div class="button-group mt-3">
-                    <button type="button" class="btn btn-secondary" onclick="prevStep()">Anterior</button>
-                    <button type="button" class="btn btn-primary ms-2" onclick="nextStep()">Siguiente</button>
+                    <button type="button" class="btn btn-danger" onclick="prevStep()">Anterior</button>
+                    <button type="button" class="btn btn-success ms-2" onclick="nextStep()">Siguiente</button>
                 </div>
 
             </div>
@@ -37,7 +37,7 @@
         <h2>Resultados</h2>
         <ul id="listaResultados" class="list-group"></ul>
         <div id="planetasContainer" class="d-flex flex-wrap justify-content-center mt-3"></div>
-        <button type="button" class="btn btn-primary mt-3" onclick="restartForm()">Reiniciar Formulario</button>
+        <button type="button" class="btn btn-success mt-3" onclick="restartForm()">Reiniciar Formulario</button>
     </div>
 </div>
 
@@ -45,6 +45,16 @@
     let currentStep = 0;
     let steps = Array.from(document.querySelectorAll(".step"));
     const respuestas = {};
+
+    const backgrounds = [
+        'url("https://p4.wallpaperbetter.com/wallpaper/329/443/707/forest-path-fall-leaves-wallpaper-preview.jpg")',
+        'url("https://p4.wallpaperbetter.com/wallpaper/764/431/702/river-trees-forest-clouds-wallpaper-preview.jpg")',
+        'url("https://p4.wallpaperbetter.com/wallpaper/20/481/77/landscape-nature-lake-trees-wallpaper-preview.jpg")',
+    ];
+
+    function changeBackground() {
+        document.body.style.backgroundImage = backgrounds[currentStep % backgrounds.length];
+    }
 
     window.onload = function() {
         steps.forEach((step) => {
@@ -63,6 +73,7 @@
         steps.forEach((element, index) => {
             element.classList.toggle("active", index === step);
         });
+        changeBackground();
     }
 
     function calcularEnergia(respuestas) {
@@ -218,6 +229,7 @@
             const unidad = JSON.parse(input.getAttribute('oninput').match(/\((.*?)\)/)[1].split(',')[1]);
             document.getElementById(input.id + "Output").value = unidad[0];
         });
+        changeBackground();
     }
 </script>
 
@@ -234,48 +246,79 @@
             justify-content: center;
             text-align: center;
         }
-        button {
+        .button-group {
+            display: flex;
+            justify-content: center; /* Centra los botones horizontalmente dentro del contenedor */
+            margin-top: 20px; /* Ajusta el margen superior según sea necesario */
+        }
+        #resultados {
+            text-align: center;
+          }
+        
+          #resultados button {
+            margin: 0 auto;
+        }  
+        .btn-danger, .btn-success {
+            /* Estilos para los botones */
+            padding: 15px 30px;
             background-color: #4CAF50;
             color: white;
-            padding: 10px 20px;
-            margin-top: 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
+            flex: 1; /* Hace que los botones ocupen el mismo espacio disponible */
         }
-        button:hover {
-            background-color: #45a049;
+          
+        .btn-danger {
+            background-color: #F44336;
         }
+
         #start-screen {
             text-align: center;
             padding: 50px;
         }
-        input[type="range"] {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 20px;
+        input[type="range"]::-webkit-slider-runnable-track {
+            -webkit-appearance: none;
+            background-color: #a4f3eb;
+            border-radius: 5px;
+            height: 16px;
+            cursor: grab;
+        }
+        
+        input[type="range"]::-ms-thumb {
+          -webkit-appearance: none;
+          width: 40px;
+          background: goldenrod;
         }
 
     /* Body y .container no borrar, hacer pruebas con las demas */
         body, html {
             height: 100%;
             margin: 0;
+            background-image: url('https://p4.wallpaperbetter.com/wallpaper/274/570/535/nature-trees-hills-mist-wallpaper-preview.jpg');
+            background-size: cover; /* La imagen cubrirá toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            transition: background-image 0.5s ease-in-out;
         }
         .container {
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #f0f0f0;
-        }
-
-        #formulario {
-            width: 90%;
-            max-width: 600px;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            width: 80%;
+            max-width: 400px;
+            min-height: 200px;
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
+        
         @media (max-width: 600px) {
             input[type="text"] {
                 width: 100%;
