@@ -10,6 +10,8 @@
   {% bootstrap_javascript %}
   <title>Eco Huella</title>
   <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+  <link rel="icon" href="{% static 'images/logo.png' %}" type="image/x-icon">
+
 </head>
 
 <body>
@@ -23,13 +25,13 @@
 
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a>
+            <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'calcular' %}">Calcular Huella</a>
+            <a class="nav-link text-white" href="{% url 'calcular' %}">Calcular Huella</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Acerca De</a>
+            <a class="nav-link text-white" href="#">Acerca De</a>
           </li>
         </ul>
       </div>

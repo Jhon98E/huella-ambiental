@@ -35,6 +35,7 @@
 
     <div id="resultados" style="display:none;">
         <h2>Resultados</h2>
+        <div id="alertas"></div>
         <ul id="listaResultados" class="list-group"></ul>
         <div id="planetasContainer" class="d-flex flex-wrap justify-content-center mt-3"></div>
         <button type="button" class="btn btn-success mt-3" onclick="restartForm()">Reiniciar Formulario</button>
@@ -157,8 +158,10 @@
         document.getElementById("resultados").style.display = "block";
         const listaResultados = document.getElementById("listaResultados");
         const planetasContainer = document.getElementById("planetasContainer");
+        const alertasContainer = document.getElementById("alertas");
         listaResultados.innerHTML = '';
         planetasContainer.innerHTML = '';
+        alertasContainer.innerHTML = '';
 
         Object.keys(respuestas).forEach(key => {
             respuestas[key] = Number(respuestas[key]) || 0;
@@ -167,8 +170,33 @@
         const energia = calcularEnergia(respuestas) || 0;
         const agua = calcularAgua(respuestas) || 0;
         const conciencia = calcularConciencia(respuestas) || 1;
-        // x es el factor de desperdicio de agua en relacion a la energia
-        const x = 100 * (agua / energia);
+
+        // Verificar consumos y mostrar alertas si es necesario
+        if (energia > 330000 && agua > 8000) {
+            alertasContainer.innerHTML += `
+                <div class="alert alert-warning" role="alert" style="background-color: #ef4e4e ; color: black; border: 2px solid #d39e00; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scale(1.02);">
+                    <i class="fas fa-exclamation-triangle"></i> ¡Atención :c! Tu consumo energético y de agua está por encima del promedio anual.
+                </div>
+            `;
+        }else if(energia > 330000){
+            alertasContainer.innerHTML += `
+                <div class="alert alert-success" role="alert" style="background-color: #ef4e4e; color: white; border: 2px solid #1e7e34; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scale(1.02);">
+                    <i class="fas fa-check-circle"></i> ¡Atención :c! Tu consumo energético está por encima del promedio anual.
+                </div>
+            `;
+        }else if(agua > 8000){
+            alertasContainer.innerHTML += `
+                <div class="alert alert-warning" role="alert" style="background-color: #ef4e4e ; color: black; border: 2px solid #d39e00; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scale(1.02);">
+                    <i class="fas fa-exclamation-triangle"></i> ¡Atención :c! Tu consumo de agua está por encima del promedio anual.
+                </div>
+            `;
+        }else{
+            alertasContainer.innerHTML += `
+                <div class="alert alert-success" role="alert" style="background-color: #28a745; color: white; border: 2px solid #1e7e34; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scale(1.02);">
+                    <i class="fas fa-check-circle"></i> ¡Excelente :D ! Tu consumo de agua y energético está por debajo del promedio anual.
+                </div>
+            `;
+        }
 
         // esta parte esta sujeta a cambios con los compañeros de agroambiental
         const universidadEnergia = 1000000;
@@ -176,7 +204,7 @@
         const y = 100 * (universidadAgua / universidadEnergia);
 
         const huellaTotal = conciencia * ((agua) + energia);
-        const huellaTotalpuntaje = conciencia * ((x*agua) + energia);
+        const huellaTotalpuntaje = conciencia * (agua + energia);
 
         const consumoTotalUniversidad = (y*universidadAgua + universidadEnergia)/10;
         const huellaUniversidad = huellaTotalpuntaje/consumoTotalUniversidad;
