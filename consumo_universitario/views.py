@@ -34,7 +34,7 @@ preguntas = {
     },
     "p7": {
         "titulo": "Hidratacion",
-        "pregunta": "¿Con que frecuencia utilizas las fuentes o bebederos de agua de la universidad al Dia?",
+        "pregunta": "¿Cuantás veces utilizas las fuentes o bebederos de agua de la universidad al Dia?",
         "unidad": ["0","1","2","3","4","5","6","7","8","9","10"]
     },
     "p8": {
@@ -44,7 +44,7 @@ preguntas = {
     },
     "p9": {
         "titulo": "Manejo de residuos",
-        "pregunta": "¿Antes de desechar tu basura conoces en que recipiente debe de ir?",
+        "pregunta": "¿Antes de desechar tu basura indentificas en que recipiente debe de ir?",
         "unidad": ["No","Si"]
     },
     "p10": {
