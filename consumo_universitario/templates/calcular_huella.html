@@ -7,7 +7,7 @@
     <div id="start-screen" class="text-center">
         <h1>Bienvenido al Formulario</h1>
         <p>Presiona el botón para iniciar el formulario.</p>
-        <button type="button" class="btn btn-success" onclick="startForm()">Iniciar</button>
+        <button type="button" class="btn btn-outline-success" onclick="startForm()">Iniciar</button>
     </div>
 
     <form id="formulario" style="display:none;">
@@ -25,8 +25,8 @@
                 <output id="{{ key }}Output" class="form-control" style="width: auto;">{{ pregunta.unidad.0 }}</output>
                 
                 <div class="button-group mt-3">
-                    <button type="button" class="btn btn-danger" onclick="prevStep()">Anterior</button>
-                    <button type="button" class="btn btn-success ms-2" onclick="nextStep()">Siguiente</button>
+                    <button type="button" class="btn btn-outline-danger" onclick="prevStep()">Anterior</button>
+                    <button type="button" class="btn btn-outline-success ms-2" onclick="nextStep()">Siguiente</button>
                 </div>
 
             </div>
@@ -38,7 +38,7 @@
         <div id="alertas"></div>
         <ul id="listaResultados" class="list-group"></ul>
         <div id="planetasContainer" class="d-flex flex-wrap justify-content-center mt-3"></div>
-        <button type="button" class="btn btn-success mt-3" onclick="restartForm()">Reiniciar Formulario</button>
+        <button type="button" class="btn btn-outline-primary mt-3" onclick="restartForm()">Reiniciar Formulario</button>
     </div>
 </div>
 
@@ -174,19 +174,19 @@
         // Verificar consumos y mostrar alertas si es necesario
         if (energia > 330000 && agua > 8000) {
             alertasContainer.innerHTML += `
-                <div class="alert alert-warning" role="alert" style="background-color: #ef4e4e ; color: black; border: 2px solid #d39e00; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scale(1.02);">
+                <div class="alert alert-warning" role="alert" style="background-color: #ef4e4e ; color: black; border: 2px solid #e6bab0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scale(1.02);">
                     <i class="fas fa-exclamation-triangle"></i> ¡Atención :c! Tu consumo energético y de agua está por encima del promedio anual.
                 </div>
             `;
         }else if(energia > 330000){
             alertasContainer.innerHTML += `
-                <div class="alert alert-success" role="alert" style="background-color: #ef4e4e; color: white; border: 2px solid #1e7e34; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scale(1.02);">
+                <div class="alert alert-success" role="alert" style="background-color: #ef4e4e; color: white; border: 2px solid #e6bab0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scale(1.02);">
                     <i class="fas fa-check-circle"></i> ¡Atención :c! Tu consumo energético está por encima del promedio anual.
                 </div>
             `;
         }else if(agua > 8000){
             alertasContainer.innerHTML += `
-                <div class="alert alert-warning" role="alert" style="background-color: #ef4e4e ; color: black; border: 2px solid #d39e00; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scale(1.02);">
+                <div class="alert alert-warning" role="alert" style="background-color: #ef4e4e ; color: black; border: 2px solid #e6bab0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transform: scale(1.02);">
                     <i class="fas fa-exclamation-triangle"></i> ¡Atención :c! Tu consumo de agua está por encima del promedio anual.
                 </div>
             `;
@@ -210,9 +210,9 @@
         const huellaUniversidad = huellaTotalpuntaje/consumoTotalUniversidad;
 
         listaResultados.innerHTML = `
-            <li class="list-group-item">Consumo de Energía: ${energia.toFixed(2)} Wh</li>
+            <li class="list-group-item">Consumo de Energía: ${(energia.toFixed(2))/1000} KWh</li>
             <li class="list-group-item">Consumo de Agua: ${agua.toFixed(2)} L</li>
-            <li class="list-group-item">Factor de Conciencia: ${conciencia.toFixed(2)}</li>
+            {% comment %} <li class="list-group-item">Factor de Conciencia: ${conciencia.toFixed(2)}</li> {% endcomment %}
             <li class="list-group-item">Huella Total Universidad: ${huellaUniversidad.toFixed(2)}</li>
         `;
 
@@ -334,6 +334,13 @@
             justify-content: center;
             align-items: center;
             background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+            font-family: Pacifico, cursive;
+            /*font-family: 'Open Sans', sans-serif;*/
+            /*font-family: 'Lato', sans-serif;*/
+            /*font-family: Montserrat, serif;*/
+            font-weight: 500;
+            /*font-family: Merriweather, serif;*/
+            font-style: italic;
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra suave */

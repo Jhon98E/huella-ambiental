@@ -28,7 +28,7 @@
             <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="{% url 'calcular' %}">Calcular Huella</a>
+            <a class="nav-link text-white" href="{% url 'calcular' %}">Calcular Consumo Universitario</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="#">Acerca De</a>
@@ -37,6 +37,32 @@
       </div>
     </nav>
   </header>
+
+    <style>
+      .nav {
+        display: flex;
+        justify-content: center;
+        font-family: Pacifico, cursive;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 800px;
+        gap: 20px;
+      }
+      
+      .nav-item {
+        background-color: #22222; /* Color de fondo por defecto */
+        padding: 10px;
+        border-radius: 5px;
+      }
+      
+      .nav-item:hover {
+        background-color: #000000;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.8); /* Sombra suave */
+        transform: translateY(-2px); /* Levanta ligeramente el elemento */
+      }
+    </style>
 
 
   {% block content %}
